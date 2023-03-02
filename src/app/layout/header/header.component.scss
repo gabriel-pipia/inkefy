@@ -1,0 +1,103 @@
+@import "../../../assets/scss/Variable";
+@import "../../../assets/scss/Mixin";
+@import "../../../assets/scss/Reset";
+.container {
+  position: relative;
+  max-width: $containr-max-width;
+  width: $containr-width;
+  margin: 0 auto;
+  background: $bg-color-blue-dark;
+  padding-top: $size-1rem;
+  .top {
+    @include flex(row, center, space-between, $size-1_5rem);
+    flex-wrap: wrap;
+    .left {
+      display: flex;
+      order: 1;
+      img {
+        width: $full-width;
+        max-width: 100px;
+      }
+    }
+    .middle {
+      display: flex;
+      order: 3;
+      width: $full-width;
+      max-width: none;
+      @include breakPoints(650px) {
+        order: 2;
+        max-width: 400px;
+      }
+      .input-wrapper {
+        position: relative;
+        height: 45px;
+        width: $full-width;
+        border-radius: $large-radius-xxl;
+        border: $size-01rem solid $color-white-default;
+        display: inline-flex;
+        overflow: hidden;
+        .input-placeholder {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          @include flex(row, center, center, $size-05rem);
+          transition: $transition;
+          pointer-events: none;
+          i {
+            font-size: $fs-small-xl;
+            color: $color-white-default;
+          }
+          span {
+            font-size: $fs-small-xl;
+            color: $color-white-default;
+            font-weight: $fw-medium;
+            white-space: nowrap;
+          }
+        }
+        input {
+          width: $full-width;
+          height: $full-height;
+          font-weight: $fw-medium;
+          font-size: $fs-small-xl;
+          color: $color-white-default;
+          padding: 0 $size-1_5rem;
+          border: none;
+          outline: none;
+          background: $color-transparent-default;
+          text-align: center;
+          transition: $transition;
+          &::placeholder {
+            transition: $transition;
+            font-weight: $fw-medium;
+          }
+          &:focus {
+            &::placeholder {
+              color: $color-white-default;
+            }
+          }
+        }
+      }
+    }
+    .right {
+      position: relative;
+      display: flex;
+      order: 2;
+      @include breakPoints(650px) {
+        order: 3;
+      }
+      .button-open-aside {
+        i {
+          font-size: $fs-medium-xl;
+          color: $color-white-default;
+        }
+      }
+    }
+  }
+  .bottom {
+    display: block;
+    todo-navigation {
+      width: $full-width;
+    }
+  }
+}

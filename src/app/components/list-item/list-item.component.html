@@ -1,0 +1,16 @@
+<div class="list-wrapper" [class.done]="Item.done" [class.open]="OpenItem">
+  <div class="checkbox-wrapper" (click)="onUpdateItem()">
+    <div
+      class="checkbox"
+      [style.background]="Item.done ? ThemeColor.accentColor : ''"
+    >
+      <i class="fas fa-check"></i>
+    </div>
+  </div>
+  <div class="content-wrapper" (click)="onEditItem()" (click)="onOpenItem()">
+    <p>{{ Item.description }}</p>
+  </div>
+  <button (click)="onDeleteItem()" class="button-delete">
+    <i class="fa fa-trash"></i>
+  </button>
+</div>

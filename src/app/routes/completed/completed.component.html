@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="task-not-found" *ngIf="CompletedItem.length == 0">
+    <h3>Completed "Task" not found</h3>
+  </div>
+  <todo-list-item
+    *ngFor="let Item of CompletedItem"
+    (DeleteItem)="GetCompletedItem()"
+    (UpdateItem)="GetCompletedItem()"
+    [Item]="Item"
+  ></todo-list-item>
+</div>

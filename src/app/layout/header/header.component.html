@@ -1,0 +1,28 @@
+<div class="container" [style.background]="ThemeColor.backgroundColor">
+  <div class="top">
+    <div class="left">
+      <div class="logo">
+        <img src="../../../assets/svg/logo.svg" alt="" />
+      </div>
+    </div>
+    <div class="middle">
+      <label for="search-input" class="input-wrapper">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search for task"
+          (input)="onEmitSearchVlaue()"
+          [(ngModel)]="SearchValue"
+        />
+      </label>
+    </div>
+    <div class="right">
+      <button class="button-open-aside" (click)="onOpenAside(true)">
+        <i class="fas fa-gear"></i>
+      </button>
+    </div>
+  </div>
+  <div class="bottom">
+    <todo-navigation [ThemeColor]="ThemeColor"></todo-navigation>
+  </div>
+</div>

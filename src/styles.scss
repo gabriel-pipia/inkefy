@@ -1,0 +1,6 @@
+@import "./assets/scss/Variable";
+@import "./assets/scss/Mixin";
+@import "./assets/scss/Reset";
+body {
+  background: $bg-color-blue-dark;
+}

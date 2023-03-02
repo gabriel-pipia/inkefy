@@ -1,0 +1,22 @@
+@import "../../../assets/scss/Variable";
+@import "../../../assets/scss/Mixin";
+@import "../../../assets/scss/Reset";
+.container {
+  position: relative;
+  display: block;
+  max-width: $containr-max-width;
+  width: $containr-width;
+  margin: 0 auto;
+  padding-bottom: $size-1rem;
+  .task-not-found {
+    position: relative;
+    width: $full-width;
+    @include flex(row, center, center, 0);
+    padding: $size-2rem;
+    h3 {
+      font-size: $fs-medium;
+      font-weight: $fw-bold;
+      color: $color-gray-400;
+    }
+  }
+}

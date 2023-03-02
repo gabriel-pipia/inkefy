@@ -1,0 +1,100 @@
+// @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./Variable";
+@import "./Mixin";
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  width: $size-04rem;
+  height: $size-04rem;
+  background: $bg-color-dark;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: $small-radius;
+  background: $color-white-default;
+  border-right: $size-01rem solid $bg-color-dark;
+}
+
+html {
+  // color-scheme: dark light;
+  font-family: $ff;
+}
+
+body {
+  min-height: $full-height-vh;
+}
+
+:is(input, textarea, select):focus,
+:is(input, textarea, select) {
+  outline: none;
+}
+
+button,
+select {
+  text-transform: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button {
+  background: none;
+  border: 0;
+  outline: 0;
+  padding: $button-padding-small;
+  cursor: pointer;
+}
+
+textarea {
+  overflow: auto;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+:is(ol, ul) {
+  list-style: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+[disabled] {
+  opacity: $opacity-50 !important;
+  pointer-events: none !important;
+}

@@ -1,0 +1,108 @@
+@import "../../../assets/scss/Variable";
+@import "../../../assets/scss/Mixin";
+@import "../../../assets/scss/Reset";
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: $color-black-default;
+  opacity: $opacity-60;
+  z-index: -1;
+}
+
+.modal-container {
+  position: absolute;
+  z-index: 1;
+  top: auto;
+  bottom: $size-2rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  animation: scale-in 0.1s ease-in forwards;
+  transform-origin: left;
+  @keyframes scale-in {
+    0% {
+      transform: scale(0) translate(-50%, 0);
+    }
+    100% {
+      transform: scale(1) translate(-50%, 0);
+    }
+  }
+  width: 90%;
+  max-width: 400px;
+  @include breakPoints(650px) {
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    @keyframes scale-in {
+      0% {
+        transform: scale(7) translate(-50%, -50%);
+      }
+      100% {
+        transform: scale(1) translate(-50%, 100%);
+      }
+    }
+  }
+  border: $size-01rem solid $color-gray-400;
+  border-radius: $big-radius;
+  background: $bg-color-blue-dark;
+  padding: $size-1_5rem;
+  overflow: hidden;
+  .modal-body {
+    @include flex(row, center, flex-start, $size-04rem);
+    padding-bottom: $size-2rem;
+    .checkbox-wrapper {
+      position: relative;
+      padding-bottom: $size-08rem;
+      @include flex(row, center, center, 0);
+      border: $size-01rem solid $color-muted;
+      border-radius: calc($small-radius - 2px);
+      width: 20px;
+      min-width: 20px;
+      height: 20px;
+    }
+    .input-wrapper {
+      position: relative;
+      width: $full-width;
+      input {
+        border: none;
+        outline: none;
+        background: none;
+        width: $full-width;
+        font-size: $fs-small-xl;
+        font-weight: $fw-bold;
+        color: $color-gray-500;
+        padding: $size-04rem $size-06rem;
+        &::placeholder {
+          color: $color-gray-500;
+        }
+        &:focus {
+          outline: none;
+          border: none;
+        }
+      }
+    }
+  }
+  .modal-footer {
+    position: relative;
+    @include flex(row, center, space-between, $size-1rem);
+    button {
+      width: 45%;
+      height: 40px;
+      @include flex(row, center, center, 0);
+      border-radius: $large-radius-xxl;
+      font-size: $fs-small-xl;
+      font-weight: $fw-bold;
+      color: $color-white-default;
+      cursor: pointer;
+      transition: 0.1s ease-in;
+      &:active {
+        transform: scale(0.9);
+      }
+      &.button-close {
+        border: $size-01rem solid $color-white-default;
+      }
+      &.button-Done {
+        background: $color-blue;
+      }
+    }
+  }
+}

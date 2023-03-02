@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="task-not-found" *ngIf="PendingItem.length == 0">
+    <h3>Pending "Task" not found</h3>
+  </div>
+  <todo-list-item
+    *ngFor="let item of PendingItem"
+    [Item]="item"
+    (DeleteItem)="GetPendingItem()"
+    (UpdateItem)="GetPendingItem()"
+  ></todo-list-item>
+</div>

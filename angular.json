@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "inkefy": {
+    "todo-list-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -13,12 +13,12 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "",
+      "prefix": "todo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/inkefy",
+            "outputPath": "dist/todo-list-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -27,13 +27,10 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "./node_modules/font-awesome/css/font-awesome.css",
-              "./node_modules/font-awesome/css/font-awesome.min.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -41,7 +38,7 @@
             "production": {
               "budgets": [{
                   "type": "initial",
-                  "maximumWarning": "1mb",
+                  "maximumWarning": "2mb",
                   "maximumError": "3mb"
                 },
                 {
@@ -67,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "inkefy:build:production"
+              "browserTarget": "todo-list-app:build:production"
             },
             "development": {
-              "browserTarget": "inkefy:build:development"
+              "browserTarget": "todo-list-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "inkefy:build"
+            "browserTarget": "todo-list-app:build"
           }
         },
         "test": {
@@ -91,11 +88,12 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": []
           }

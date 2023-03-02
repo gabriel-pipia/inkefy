@@ -1,0 +1,43 @@
+@import "../../../assets/scss/Variable";
+@import "../../../assets/scss/Mixin";
+@import "../../../assets/scss/Reset";
+.completed-task-container {
+  position: relative;
+  width: $full-width;
+  padding-bottom: $size-1rem;
+  .task-header {
+    position: relative;
+    @include flex(row, center, flex-start, $size-04rem);
+    width: $containr-width;
+    max-width: $containr-max-width;
+    margin: 0 auto;
+    h3 {
+      font-weight: $fw-medium;
+      font-size: $fs-small;
+      color: $color-white-default;
+      cursor: pointer;
+    }
+    i {
+      font-size: $fs-small;
+      color: $color-white-default;
+      transition: $transition;
+      cursor: pointer;
+    }
+  }
+  todo-completed {
+    display: block;
+    height: 0;
+    transition: $transition;
+    overflow: hidden;
+  }
+  &.active {
+    .task-header {
+      i {
+        transform: rotateZ(-180deg);
+      }
+    }
+    todo-completed {
+      height: $full-height;
+    }
+  }
+}
