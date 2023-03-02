@@ -1,4 +1,4 @@
-// @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "./Variable";
 @import "./Mixin";
 *,
@@ -17,7 +17,7 @@
 
 *::-webkit-scrollbar-thumb {
   border-radius: $small-radius;
-  background: $color-white-default;
+  background: $primary-gradient;
   border-right: $size-01rem solid $bg-color-dark;
 }
 
@@ -26,12 +26,12 @@ html {
   font-family: $ff;
 }
 
-body {
-  min-height: $full-height-vh;
-}
-
-:is(input, textarea, select):focus,
-:is(input, textarea, select) {
+:is(input,
+textarea,
+select):focus,
+:is(input,
+textarea,
+select) {
   outline: none;
 }
 
@@ -44,6 +44,18 @@ select {
 
 a {
   text-decoration: none;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1rem;
 }
 
 img,
@@ -86,15 +98,11 @@ input[type="number"]::-webkit-outer-spin-button {
   appearance: none;
 }
 
-:is(ol, ul) {
+:is(ol,
+ul) {
   list-style: none;
 }
 
 [hidden] {
   display: none !important;
-}
-
-[disabled] {
-  opacity: $opacity-50 !important;
-  pointer-events: none !important;
 }

@@ -1,40 +1,13 @@
-@import "../assets/scss/Variable";
 @import "../assets/scss/Mixin";
 @import "../assets/scss/Reset";
-todo-header {
-  position: sticky;
-  top: calc(-166px + 48px);
-  z-index: 1;
-  @include breakPoints(650px) {
-    top: calc(-112px + 48px);
-  }
+@import "../assets/scss/Variable";
+header,
+main,
+footer {
+  position: relative;
+  width: $full-width;
 }
 
-todo-add-task-btn {
-  position: fixed;
-  bottom: $size-2_5rem;
-  right: 5%;
-  @include breakPoints(650px) {
-    display: none;
-  }
-}
-
-todo-task-add-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  display: none;
-  &.active {
-    display: block;
-  }
-}
-
-todo-aside {
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  display: none;
-  &.active {
-    display: block;
-  }
+footer {
+  background: $bg-color-purple-dark;
 }

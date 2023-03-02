@@ -1,0 +1,91 @@
+@import "../../../assets/scss/Mixin";
+@import "../../../assets/scss/Reset";
+@import "../../../assets/scss/Variable";
+.carousel-slider {
+  --slider-width: 5000px;
+  position: relative;
+  width: $full-width-vw;
+  margin-top: $size-1rem;
+  background: linear-gradient(
+    0deg,
+    $bg-color-dark 90%,
+    $color-transparent-default
+  );
+  max-width: 2000px;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 325px;
+  @include flex(row, center, stretch, 0);
+  .carousel-slide {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    animation: moveX 20s linear infinite;
+    @include flex(row, center, stretch, 0);
+    .carousel-list-wrapper {
+      position: relative;
+      width: calc(var(--slider-width) / 2);
+      .carousel-list {
+        position: relative;
+        width: $full-width;
+        @include flex(row, center, space-around, 0);
+        .carousel-item {
+          --border-radius: 1rem;
+          --border-width: 0.2rem;
+          position: relative;
+          width: calc(calc(var(--slider-width) + 18rem) / 36);
+          max-width: 200px;
+          aspect-ratio: 1/1;
+          margin-left: $size-1rem;
+          border-radius: calc(var(--border-radius));
+          background: $primary-gradient-second;
+          z-index: 1;
+          &:nth-child(even) {
+            margin-top: $size-2rem;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            height: calc($full-height - calc(var(--border-width) * 2));
+            width: calc($full-width - calc(var(--border-width) * 2));
+            top: var(--border-width);
+            left: var(--border-width);
+            background: $bg-color-dark;
+            border-radius: calc(var(--border-radius) - var(--border-width));
+            z-index: -1;
+          }
+          img {
+            position: absolute;
+            display: block;
+            object-fit: cover;
+            height: calc(
+              100% - var(--border-width) * 2 - var(--border-width) * 4
+            );
+            width: calc(
+              100% - var(--border-width) * 2 - var(--border-width) * 4
+            );
+            top: calc(var(--border-width) * 3);
+            left: calc(var(--border-width) * 3);
+            background: #0c0c0c;
+            border-radius: calc(var(--border-radius) - var(--border-width) * 2);
+            z-index: 1;
+          }
+        }
+        &:last-child {
+          margin-top: -1rem;
+        }
+      }
+    }
+  }
+}
+
+@keyframes moveX {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(var(--slider-width) / -2);
+  }
+}

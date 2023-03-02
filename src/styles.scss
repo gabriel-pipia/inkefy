@@ -1,6 +1,9 @@
-@import "./assets/scss/Variable";
-@import "./assets/scss/Mixin";
-@import "./assets/scss/Reset";
+@import "./assets/scss/_Mixin.scss";
+@import "./assets/scss/_Reset.scss";
+@import "./assets/scss/_Variable.scss";
 body {
-  background: $bg-color-blue-dark;
+  width: $full-width;
+  height: $full-height;
+  min-height: $full-height-vh;
+  background: $bg-color-dark;
 }

@@ -1,0 +1,77 @@
+@import "../../../assets/scss/Mixin";
+@import "../../../assets/scss/Reset";
+@import "../../../assets/scss/Variable";
+.container {
+  position: relative;
+  width: $containr-width;
+  max-width: $containr-max-width;
+  height: $full-height;
+  margin: 0 auto;
+  padding: $size-3rem 0;
+  @include flex(column, stretch, center, $size-1rem);
+  .middle,
+  .bottom {
+    width: $full-width;
+    @include flex(row, flex-start, center, $size-2rem);
+  }
+  .top {
+    @include flex(column, flex-start, space-between, $size-2rem);
+    flex-wrap: wrap;
+    @include breakPoints(700px) {
+      flex-direction: row;
+    }
+    .logo {
+      position: relative;
+      width: 120px;
+    }
+    .footer-navigation-wrapper {
+      @include flex(row, flex-start, space-between, $size-2rem);
+      flex: 1;
+      flex-wrap: wrap;
+      color: $color-text-muted;
+      max-width: 700px;
+      width: $full-width;
+      @include breakPoints(700px) {
+        width: auto;
+      }
+      ul:first-child {
+        display: none;
+      }
+      @include breakPoints(420px) {
+        ul:first-child {
+          display: block;
+        }
+      }
+      ul {
+        flex: 1;
+        li {
+          margin-bottom: $size-05rem;
+          font-size: $fs-small;
+          cursor: pointer;
+          &:hover {
+            color: $color-white-default;
+          }
+        }
+        h3 {
+          margin-bottom: $size-05rem;
+          color: $color-white-default;
+          font-size: $fs-medium;
+        }
+      }
+    }
+  }
+  .middle {
+    margin-top: $size-1rem;
+    i {
+      font-size: $fs-small;
+      color: $color-white-default;
+      cursor: pointer;
+    }
+  }
+  .bottom {
+    p {
+      font-size: $fs-small;
+      color: $color-text-muted;
+    }
+  }
+}

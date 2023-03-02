@@ -1,19 +1,24 @@
 // TODO: Primary Color
-$color-blue: #2076da;
-$color-green: #136f63;
-$color-yellow: #d39800;
-$color-orange: #f34213;
-$color-purple: #6f5bd4;
-// TODO: Other Color
-$color-muted: #a0a8ad;
+$color-primary: rgba(251, 24, 187, 1);
+$color-primary-100: rgba(251, 24, 187, 0.1);
+$color-primary-200: rgba(251, 24, 187, 0.2);
+$color-primary-300: rgba(251, 24, 187, 0.3);
+$color-primary-400: rgba(251, 24, 187, 0.4);
+$color-primary-500: rgba(251, 24, 187, 0.5);
+$color-primary-600: rgba(251, 24, 187, 0.6);
+$color-primary-700: rgba(251, 24, 187, 0.7);
+$color-primary-800: rgba(251, 24, 187, 0.8);
+$color-primary-900: rgba(251, 24, 187, 0.9);
+// TODO: Primary Gradient
+$primary-gradient: linear-gradient(120deg, #fb18bb 0%, #45a7f6 100%);
+$primary-gradient-second: linear-gradient(135deg, #D9D9D9 0%, #FB18BB 50%, #45A7F6 100%);
+// TODO: Default Text Color
+$color-text-muted: #979899;
 // TODO: Background Color
+$bg-color-body: #efefef;
 $bg-color-light: #f6f6f6;
 $bg-color-dark: #0c0c0c;
-$bg-color-blue-dark: #041524;
-$bg-color-green-dark: #000f08;
-$bg-color-yellow-dark: #141202;
-$bg-color-orange-dark: #170905;
-$bg-color-purple-dark: #090615;
+$bg-color-purple-dark: #0c0811;
 // TODO: Colors
 $color-black-default: #151a1e;
 $color-white-default: #ffffff;
@@ -96,7 +101,7 @@ $color-red-900: #781212;
 $color-red-050: #fff4f4;
 $color-overlay: $color-transparent-05;
 // TODO: Sizing
-$containr-max-width: 650px;
+$containr-max-width: 1200px;
 $containr-width: 90%;
 $full-width: 100%;
 $full-height: 100%;
@@ -166,7 +171,8 @@ $fs-large-xl: 1.4rem;
 $fs-large-xxl: 2rem;
 $fs-large-xxxl: 3.5rem;
 $fs-large-4xl: 5rem;
-$ff: "Poppins", sans-serif;
+$ff: "Poppins",
+sans-serif;
 // TODO: Shadow
 $shadow-basic: 0 0.1rem 0.25rem 0 $color-transparent-02;
 $shadow-hover: 0 0.5rem 0.7rem 0 $color-transparent-white-03;

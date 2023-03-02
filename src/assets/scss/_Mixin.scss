@@ -1,13 +1,5 @@
 @import "./Variable";
-$breakPoints: (
-  "xs": 0,
-  "sm": 480px,
-  "md": 720px,
-  "lg": 960px,
-  "xl": 1200px,
-  "xxl": 1400px,
-  "xxxl": 1600px,
-);
+$breakPoints: ( "xs": 0, "sm": 480px, "md": 720px, "lg": 960px, "xl": 1200px, "xxl": 1400px, "xxxl": 1600px, );
 @mixin screen-xs {
   @media screen and (min-width: map-get($breakPoints, "xs")) {
     @content;
@@ -78,9 +70,11 @@ $breakPoints: (
 @mixin button {
   width: auto;
   height: auto;
-  font-size: $fs-small-xl;
-  font-weight: $fw-bold;
-  border-radius: $small-radius;
+  font-size: $fs-medium;
+  font-weight: $fw-medium;
+  background: $color-primary;
+  color: $color-white-default;
+  border-radius: $big-radius;
   transition: $transition;
   &:hover {
     opacity: $opacity-90;
@@ -90,44 +84,63 @@ $breakPoints: (
   }
 }
 
-@mixin fede-in(
-  $duration: 0.5s,
-  $timing-function: linear,
-  $fill-mode: forwards
-) {
-  animation: fede-in $duration $timing-function $fill-mode;
+@mixin custom-button {
+  --border-radius: 5rem;
+  --border-width: 0.2rem;
+  --transition: 0.2s ease-in-out;
+  position: relative;
+  @include flex(row, center, center, 0);
+  width: auto;
+  height: 45px;
+  padding: 0 $size-1rem;
+  font-size: $fs-small-xl;
+  font-weight: $fw-bold;
+  color: $color-white-default;
+  border-radius: var(--border-radius);
+  background: $primary-gradient;
+  background-size: 150% 150%;
+  background-position: left top;
+  text-transform: uppercase;
+  transition: var(--transition);
+  z-index: 1;
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: calc($full-height - calc(var(--border-width) * 2));
+    width: calc($full-width - calc(var(--border-width) * 2));
+    top: var(--border-width);
+    left: var(--border-width);
+    background: $bg-color-dark;
+    border-radius: calc(var(--border-radius) - var(--border-width));
+    transition: var(--transition);
+    z-index: -1;
+  }
+  &:hover {
+    background-position: right bottom;
+    &::after {
+      background: transparent;
+    }
+  }
 }
 
-@mixin fede-out(
-  $duration: 0.5s,
-  $timing-function: linear,
-  $fill-mode: forwards
-) {
-  animation: fede-out $duration $timing-function $fill-mode;
+@mixin fede-in($duration: 0.5s, $fill-mode: forwards) {
+  animation: fede-in $duration linear $fill-mode;
 }
 
-@mixin scale-in(
-  $duration: 0.5s,
-  $timing-function: linear,
-  $fill-mode: forwards
-) {
-  animation: scale-in $duration $timing-function $fill-mode;
+@mixin fede-out($duration: 0.5s, $fill-mode: forwards) {
+  animation: fede-out $duration linear $fill-mode;
 }
 
-@mixin scale-out(
-  $duration: 0.5s,
-  $timing-function: linear,
-  $fill-mode: forwards
-) {
-  animation: scale-out $duration $timing-function $fill-mode;
+@mixin scale-in($duration: 0.5s, $fill-mode: forwards) {
+  animation: scale-in $duration linear $fill-mode;
 }
 
-@mixin animation(
-  $name: fede-in,
-  $timing-function: linear,
-  $duration: 0.5s,
-  $fill-mode: forwards
-) {
+@mixin scale-out($duration: 0.5s, $fill-mode: forwards) {
+  animation: scale-out $duration linear $fill-mode;
+}
+
+@mixin animation( $name: fede-in, $timing-function: linear, $duration: 0.5s, $fill-mode: forwards) {
   animation: $name $duration $timing-function $fill-mode;
 }
 

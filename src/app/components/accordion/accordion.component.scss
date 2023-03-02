@@ -1,0 +1,89 @@
+@import "../../../assets/scss/Mixin";
+@import "../../../assets/scss/Reset";
+@import "../../../assets/scss/Variable";
+.accordian-item {
+  --border-radius: 0.8rem;
+  --border-width: 0.15rem;
+  --transition: 0.2s ease-in-out;
+  position: relative;
+  width: $full-width;
+  height: auto;
+  margin-top: $size-1rem;
+  @include flex(column, flex-start, center, 0);
+  padding: $size-1rem;
+  font-size: $fs-small-xl;
+  color: $color-text-muted;
+  border-radius: var(--border-radius);
+  background: $primary-gradient-second;
+  transition: var(--transition);
+  cursor: pointer;
+  z-index: 1;
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: calc($full-height - calc(var(--border-width) * 2));
+    width: calc($full-width - calc(var(--border-width) * 2));
+    top: var(--border-width);
+    left: var(--border-width);
+    background: $bg-color-purple-dark;
+    border-radius: calc(var(--border-radius) - var(--border-width));
+    transition: var(--transition);
+    z-index: -1;
+  }
+  .accordian-header {
+    position: relative;
+    width: $full-width;
+    @include flex(row, center, space-between, $size-1rem);
+    pointer-events: none;
+    .accordian-title {
+      font-weight: $fw-medium;
+      font-size: $fs-medium;
+      color: $color-white-default;
+    }
+    i {
+      display: none;
+      font-size: $fs-medium;
+      color: $color-white-default;
+      cursor: pointer;
+      &.plus {
+        display: block;
+        background-image: $primary-gradient;
+        background-clip: text;
+        color: $color-transparent-default;
+      }
+    }
+  }
+  .accordian-body {
+    display: none;
+    padding-top: $size-05rem;
+    pointer-events: none;
+    p {
+      font-size: $fs-small;
+      color: $color-text-muted;
+    }
+  }
+  &.active {
+    cursor: default;
+    .accordian-body {
+      display: block;
+    }
+    .accordian-header {
+      position: relative;
+      @include flex(row, center, space-between, $size-1rem);
+      .accordian-title {
+        font-weight: $fw-medium;
+        font-size: $fs-medium;
+        color: $color-white-default;
+      }
+      i {
+        &.plus {
+          display: none;
+        }
+        &.minus {
+          display: block;
+        }
+      }
+    }
+  }
+}
