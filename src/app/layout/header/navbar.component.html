@@ -1,0 +1,104 @@
+<!-- Main Navbar -->
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="container">
+    <a routerLink="/" class="logo" (click)="closeMenu()">
+      <img src="assets/images/logo.png" alt="Inkefy Logo" />
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="nav-links desktop-only">
+      <a *ngFor="let item of navItems" 
+         [routerLink]="item.route" 
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: item.route === '/'}">
+        <i class="fa {{item.icon}}"></i>
+        <span>{{item.label}}</span>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Connect Wallet Button (Not Connected) -->
+      <button class="btn-connect" *ngIf="!isWalletConnected" (click)="openWalletModal()">
+        <i class="fa fa-wallet"></i>
+        <span>Connect Wallet</span>
+      </button>
+      
+      <!-- Wallet Connected State -->
+      <div class="wallet-connected" *ngIf="isWalletConnected">
+        <div class="wallet-info">
+          <i class="fa fa-wallet"></i>
+          <span class="wallet-address">{{walletAddress}}</span>
+        </div>
+        <button class="btn-disconnect" (click)="disconnectWallet()" title="Disconnect">
+          <i class="fa fa-sign-out-alt"></i>
+        </button>
+      </div>
+      
+      <button class="hamburger" [class.active]="isMenuOpen" (click)="toggleMenu()" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Aside Menu -->
+<aside class="mobile-aside" [class.open]="isMenuOpen">
+  <!-- Aside Header -->
+  <div class="aside-header">
+    <a routerLink="/" class="aside-logo" (click)="closeMenu()">
+      <img src="assets/images/logo.png" alt="Inkefy" />
+    </a>
+    <button class="aside-close" (click)="closeMenu()" aria-label="Close menu">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+
+  <!-- Aside Navigation -->
+  <nav class="aside-nav">
+    <a *ngFor="let item of navItems" 
+       [routerLink]="item.route" 
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: item.route === '/'}"
+       (click)="closeMenu()"
+       class="nav-item">
+      <div class="nav-item-icon">
+        <i class="fa {{item.icon}}"></i>
+      </div>
+      <div class="nav-item-content">
+        <span class="nav-item-label">{{item.label}}</span>
+        <span class="nav-item-description">{{item.description}}</span>
+      </div>
+      <i class="fa fa-chevron-right nav-item-arrow"></i>
+    </a>
+  </nav>
+
+  <!-- Aside CTA -->
+  <div class="aside-cta">
+    <button class="btn-wallet-large" *ngIf="!isWalletConnected" (click)="openWalletModal()">
+      <i class="fa fa-wallet"></i>
+      <span>Connect Wallet</span>
+    </button>
+    
+    <div class="wallet-connected-mobile" *ngIf="isWalletConnected">
+      <div class="connection-status">
+        <i class="fa fa-check-circle"></i>
+        <span>Connected</span>
+      </div>
+      <div class="wallet-address-mobile">{{walletAddress}}</div>
+      <button class="btn-disconnect-mobile" (click)="disconnectWallet()">
+        <i class="fa fa-sign-out-alt"></i>
+        <span>Disconnect</span>
+      </button>
+    </div>
+    
+    <p class="cta-description" *ngIf="!isWalletConnected">Connect your wallet to print your NFTs</p>
+  </div>
+</aside>
+
+<!-- Overlay -->
+<div class="mobile-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
+
+<!-- Wallet Modal -->
+<app-wallet-modal #walletModal (walletConnected)="onWalletConnected($event)"></app-wallet-modal>

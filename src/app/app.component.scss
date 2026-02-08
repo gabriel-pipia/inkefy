@@ -1,13 +1,19 @@
-@import "../assets/scss/Mixin";
-@import "../assets/scss/Reset";
 @import "../assets/scss/Variable";
-header,
-main,
-footer {
-  position: relative;
-  width: $full-width;
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: $bg-color-dark;
 }
 
-footer {
-  background: $bg-color-purple-dark;
+.main-content {
+  min-height: 100vh;
+  position: relative;
+  // Padding is handled by individual page components for better control
+  
+  // Ensure routed components are block level so animations work
+  > * {
+    display: block;
+    width: 100%;
+  }
 }

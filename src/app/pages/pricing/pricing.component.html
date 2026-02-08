@@ -1,0 +1,264 @@
+<div class="pricing-page">
+  <!-- Hero Header -->
+  <section class="pricing-hero" #animatedSection>
+    <div class="hero-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge">
+          <i class="fa fa-tag"></i>
+          Simple & Transparent
+        </span>
+        <h1><span class="gradient-text">Pricing</span> Plans</h1>
+        <p>Choose the perfect size for your NFT masterpiece. No hidden fees, just quality prints.</p>
+        
+        <!-- Billing Toggle -->
+        <div class="billing-toggle">
+          <button [class.active]="billingCycle === 'single'" (click)="billingCycle = 'single'">
+            Single Print
+          </button>
+          <button [class.active]="billingCycle === 'bundle'" (click)="billingCycle = 'bundle'">
+            Bundle (3+)
+            <span class="discount-badge">Save 15%</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Material Selection -->
+  <section class="material-section" #animatedSection>
+    <div class="container">
+      <div class="section-header">
+        <h2>Choose Your <span class="gradient-text">Material</span></h2>
+        <p>Each material offers a unique look and feel for your print</p>
+      </div>
+      
+      <div class="material-grid">
+        <div 
+          class="material-card"
+          *ngFor="let material of materials"
+          [class.active]="selectedMaterial === material.id"
+          (click)="setMaterial(material.id)">
+          <div class="material-icon">
+            <i class="fa {{material.icon}}"></i>
+          </div>
+          <div class="material-info">
+            <h3>{{material.name}}</h3>
+            <p>{{material.description}}</p>
+          </div>
+          <div class="material-modifier" *ngIf="material.priceModifier !== 1">
+            <span *ngIf="material.priceModifier > 1">+{{(material.priceModifier - 1) * 100 | number:'1.0-0'}}%</span>
+            <span *ngIf="material.priceModifier < 1" class="discount">-{{(1 - material.priceModifier) * 100 | number:'1.0-0'}}%</span>
+          </div>
+          <div class="check-indicator" *ngIf="selectedMaterial === material.id">
+            <i class="fa fa-check"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Plans -->
+  <section class="pricing-section" #animatedSection>
+    <div class="container">
+      <div class="pricing-grid">
+        <div 
+          class="pricing-card"
+          *ngFor="let plan of pricingPlans"
+          [class.popular]="plan.popular">
+          
+          <!-- Popular Badge -->
+          <div class="plan-badge" *ngIf="plan.badge">
+            <i class="fa fa-star" *ngIf="plan.popular"></i>
+            <i class="fa fa-gem" *ngIf="!plan.popular && plan.badge"></i>
+            {{plan.badge}}
+          </div>
+          
+          <!-- Plan Header -->
+          <div class="plan-header">
+            <div class="plan-icon">
+              <i class="fa {{plan.icon}}"></i>
+            </div>
+            <h3>{{plan.name}}</h3>
+            <div class="plan-size">{{plan.size}}</div>
+            <p class="plan-description">{{plan.description}}</p>
+          </div>
+          
+          <!-- Plan Price -->
+          <div class="plan-price">
+            <span class="original-price" *ngIf="billingCycle === 'bundle'">
+              ${{plan.price * getMaterialModifier() | number:'1.0-0'}}
+            </span>
+            <div class="current-price">
+              <span class="currency">$</span>
+              <span class="amount">{{getFinalPrice(plan.price)}}</span>
+              <span class="period">/print</span>
+            </div>
+            <span class="material-note">{{selectedMaterial | titlecase}} print</span>
+          </div>
+          
+          <!-- Plan Features -->
+          <ul class="plan-features">
+            <li *ngFor="let feature of plan.features">
+              <i class="fa fa-check-circle"></i>
+              {{feature}}
+            </li>
+          </ul>
+          
+          <!-- Plan CTA -->
+          <button class="btn-plan" [class.btn-primary]="plan.popular" [class.btn-outline]="!plan.popular">
+            <i class="fa fa-shopping-cart"></i>
+            <span>Choose {{plan.name}}</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- All Plans Include -->
+      <div class="all-plans-include">
+        <h4>All plans include:</h4>
+        <div class="include-list">
+          <span><i class="fa fa-check"></i> Museum-quality materials</span>
+          <span><i class="fa fa-check"></i> Archival inks</span>
+          <span><i class="fa fa-check"></i> Satisfaction guarantee</span>
+          <span><i class="fa fa-check"></i> Secure packaging</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section" #animatedSection>
+    <div class="container">
+      <div class="benefits-grid">
+        <div class="benefit-card" *ngFor="let benefit of benefits">
+          <div class="benefit-icon">
+            <i class="fa {{benefit.icon}}"></i>
+          </div>
+          <h4>{{benefit.title}}</h4>
+          <p>{{benefit.description}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="comparison-section" #animatedSection>
+    <div class="container">
+      <div class="section-header">
+        <h2>Material <span class="gradient-text">Comparison</span></h2>
+        <p>Compare our premium materials to find your perfect match</p>
+      </div>
+      
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Canvas</th>
+              <th>Metal</th>
+              <th>Acrylic</th>
+              <th>Paper</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Durability</td>
+              <td><span class="rating high">Excellent</span></td>
+              <td><span class="rating high">Excellent</span></td>
+              <td><span class="rating high">Excellent</span></td>
+              <td><span class="rating medium">Good</span></td>
+            </tr>
+            <tr>
+              <td>Color Vibrancy</td>
+              <td><span class="rating medium">Good</span></td>
+              <td><span class="rating high">Excellent</span></td>
+              <td><span class="rating high">Excellent</span></td>
+              <td><span class="rating medium">Good</span></td>
+            </tr>
+            <tr>
+              <td>Texture</td>
+              <td><span class="rating high">Textured</span></td>
+              <td><span class="rating low">Smooth</span></td>
+              <td><span class="rating low">Glossy</span></td>
+              <td><span class="rating medium">Matte/Glossy</span></td>
+            </tr>
+            <tr>
+              <td>Best For</td>
+              <td>Traditional Art</td>
+              <td>Modern Spaces</td>
+              <td>Luxury Display</td>
+              <td>Framing</td>
+            </tr>
+            <tr>
+              <td>Price</td>
+              <td><span class="price-tag">Base Price</span></td>
+              <td><span class="price-tag premium">+30%</span></td>
+              <td><span class="price-tag premium">+50%</span></td>
+              <td><span class="price-tag discount">-20%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" #animatedSection>
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently <span class="gradient-text">Asked Questions</span></h2>
+        <p>Everything you need to know about our printing service</p>
+      </div>
+      
+      <div class="faq-list">
+        <div 
+          class="faq-item" 
+          *ngFor="let faq of faqs; let i = index"
+          [class.open]="faq.open">
+          <button class="faq-question" (click)="toggleFaq(i)">
+            <span>{{faq.question}}</span>
+            <i class="fa" [class.fa-plus]="!faq.open" [class.fa-minus]="faq.open"></i>
+          </button>
+          <div class="faq-answer">
+            <p>{{faq.answer}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" #animatedSection>
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-bg">
+          <div class="gradient-orb orb-1"></div>
+          <div class="gradient-orb orb-2"></div>
+        </div>
+        <div class="cta-content">
+          <h2>Ready to Print Your NFT?</h2>
+          <p>Transform your digital art into a stunning physical masterpiece today</p>
+          <div class="cta-actions">
+            <button class="btn-primary btn-large">
+              <i class="fa fa-rocket"></i>
+              Get Started Now
+            </button>
+            <button class="btn-secondary">
+              <i class="fa fa-comments"></i>
+              Contact Sales
+            </button>
+          </div>
+          <div class="trust-badges">
+            <span><i class="fa fa-shield-alt"></i> 100% Secure</span>
+            <span><i class="fa fa-undo"></i> 30-Day Guarantee</span>
+            <span><i class="fa fa-star"></i> 4.9/5 Rating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

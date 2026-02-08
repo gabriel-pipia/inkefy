@@ -1,0 +1,85 @@
+<div class="modal-overlay" 
+     [class.visible]="isVisible" 
+     (click)="onOverlayClick($event)">
+  
+  <div class="modal-content" [class.visible]="isVisible">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div class="header-content">
+        <div class="header-icon">
+          <i class="fa fa-wallet"></i>
+        </div>
+        <div class="header-text">
+          <h2>Connect Your Wallet</h2>
+          <p>Choose how you want to connect</p>
+        </div>
+      </div>
+      <button class="close-btn" (click)="closeModal()" aria-label="Close modal">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Connecting State -->
+    <div class="connecting-state" *ngIf="isConnecting">
+      <div class="spinner"></div>
+      <h3>Connecting to {{ selectedWallet }}...</h3>
+      <p>Please confirm in your wallet</p>
+    </div>
+
+    <!-- Wallet Options -->
+    <div class="wallet-options" *ngIf="!isConnecting">
+      <!-- Popular Wallets -->
+      <div class="wallet-section">
+        <span class="section-label">Popular</span>
+        <div class="wallet-grid">
+          <button 
+            *ngFor="let wallet of walletOptions | slice:0:2" 
+            class="wallet-option popular"
+            (click)="selectWallet(wallet.id)">
+            <div class="wallet-icon">
+              <i class="fab fa-{{wallet.id === 'metamask' ? 'ethereum' : 'link'}}"></i>
+            </div>
+            <div class="wallet-info">
+              <span class="wallet-name">{{wallet.name}}</span>
+              <span class="wallet-desc">{{wallet.description}}</span>
+            </div>
+            <i class="fa fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Other Wallets -->
+      <div class="wallet-section">
+        <span class="section-label">More Options</span>
+        <div class="wallet-grid">
+          <button 
+            *ngFor="let wallet of walletOptions | slice:2" 
+            class="wallet-option"
+            (click)="selectWallet(wallet.id)">
+            <div class="wallet-icon">
+              <i class="fab fa-ethereum"></i>
+            </div>
+            <div class="wallet-info">
+              <span class="wallet-name">{{wallet.name}}</span>
+              <span class="wallet-desc">{{wallet.description}}</span>
+            </div>
+            <i class="fa fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer" *ngIf="!isConnecting">
+      <p class="footer-text">
+        <i class="fa fa-shield-alt"></i>
+        Your wallet data stays private. We only request what's needed.
+      </p>
+      <div class="footer-links">
+        <a href="#" target="_blank">What is a wallet?</a>
+        <span>•</span>
+        <a href="#" target="_blank">Learn more</a>
+      </div>
+    </div>
+  </div>
+</div>

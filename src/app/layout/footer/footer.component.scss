@@ -1,77 +1,228 @@
-@import "../../../assets/scss/Mixin";
-@import "../../../assets/scss/Reset";
 @import "../../../assets/scss/Variable";
-.container {
-  position: relative;
-  width: $containr-width;
-  max-width: $containr-max-width;
-  height: $full-height;
-  margin: 0 auto;
-  padding: $size-3rem 0;
-  @include flex(column, stretch, center, $size-1rem);
-  .middle,
-  .bottom {
-    width: $full-width;
-    @include flex(row, flex-start, center, $size-2rem);
+@import "../../../assets/scss/Mixin";
+
+.footer {
+  background: $bg-color-purple-dark;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 4rem 0 0;
+  
+  .container {
+    width: $containr-width;
+    max-width: $containr-max-width;
+    margin: 0 auto;
   }
-  .top {
-    @include flex(column, flex-start, space-between, $size-2rem);
-    flex-wrap: wrap;
-    @include breakPoints(700px) {
-      flex-direction: row;
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr) 1.5fr;
+    gap: 2rem;
+    
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
     }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .footer-brand {
+    @media (max-width: 1024px) {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
     .logo {
-      position: relative;
-      width: 120px;
+      display: inline-block;
+      margin-bottom: 1rem;
+      
+      img {
+        height: 40px;
+      }
     }
-    .footer-navigation-wrapper {
-      @include flex(row, flex-start, space-between, $size-2rem);
-      flex: 1;
-      flex-wrap: wrap;
+    
+    .brand-description {
       color: $color-text-muted;
-      max-width: 700px;
-      width: $full-width;
-      @include breakPoints(700px) {
-        width: auto;
+      font-size: $fs-small;
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 1.5rem;
+      
+      @media (max-width: 1024px) {
+        max-width: 100%;
       }
-      ul:first-child {
-        display: none;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+      
+      @media (max-width: 1024px) {
+        justify-content: center;
       }
-      @include breakPoints(420px) {
-        ul:first-child {
-          display: block;
+      
+      a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: $color-text-muted;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background: $primary-gradient;
+          border-color: transparent;
+          color: $color-white-default;
+          transform: translateY(-3px);
         }
       }
-      ul {
-        flex: 1;
-        li {
-          margin-bottom: $size-05rem;
+    }
+  }
+  
+  .footer-section {
+    @media (max-width: 480px) {
+      text-align: center;
+    }
+    
+    h4 {
+      color: $color-white-default;
+      font-size: $fs-medium;
+      font-weight: $fw-semibold;
+      margin-bottom: 1.25rem;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        margin-bottom: 0.75rem;
+        
+        a {
+          color: $color-text-muted;
+          text-decoration: none;
           font-size: $fs-small;
-          cursor: pointer;
+          transition: all 0.3s ease;
+          
           &:hover {
             color: $color-white-default;
+            padding-left: 5px;
           }
-        }
-        h3 {
-          margin-bottom: $size-05rem;
-          color: $color-white-default;
-          font-size: $fs-medium;
         }
       }
     }
   }
-  .middle {
-    margin-top: $size-1rem;
-    i {
-      font-size: $fs-small;
+  
+  .footer-newsletter {
+    @media (max-width: 1024px) {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+    
+    h4 {
       color: $color-white-default;
-      cursor: pointer;
+      font-size: $fs-medium;
+      font-weight: $fw-semibold;
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      color: $color-text-muted;
+      font-size: $fs-small;
+      margin-bottom: 1rem;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+      
+      @media (max-width: 1024px) {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      
+      input {
+        flex: 1;
+        padding: 0.875rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        color: $color-white-default;
+        font-size: $fs-small;
+        
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.3);
+        }
+        
+        &:focus {
+          outline: none;
+          border-color: $color-primary;
+        }
+      }
+      
+      button {
+        width: 50px;
+        height: 50px;
+        background: $primary-gradient;
+        border: none;
+        border-radius: 50%;
+        color: $color-white-default;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+        
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 4px 20px rgba(251, 24, 187, 0.3);
+        }
+      }
     }
   }
-  .bottom {
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    
     p {
-      font-size: $fs-small;
       color: $color-text-muted;
+      font-size: $fs-small;
+    }
+    
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+      
+      a {
+        color: $color-text-muted;
+        font-size: $fs-small;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: $color-white-default;
+        }
+      }
     }
   }
 }

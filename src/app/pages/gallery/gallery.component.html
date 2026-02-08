@@ -1,0 +1,339 @@
+<div class="gallery-page">
+  <!-- Hero Header -->
+  <section class="gallery-hero" #animatedSection>
+    <div class="hero-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge">
+          <i class="fa fa-fire"></i>
+          Explore Premium NFTs
+        </span>
+        <h1><span class="gradient-text">Discover</span> Amazing Art</h1>
+        <p>Browse our curated collection of stunning NFTs ready to be transformed into museum-quality prints</p>
+        
+        <!-- Stats Row -->
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">{{nftItems.length}}+</span>
+            <span class="stat-label">NFTs Available</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">{{categories.length - 1}}</span>
+            <span class="stat-label">Categories</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">50+</span>
+            <span class="stat-label">Artists</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Gallery Section -->
+  <section class="gallery-main" #animatedSection>
+    <div class="container">
+      <div class="gallery-layout">
+        <!-- Sidebar Filters (Desktop) -->
+        <aside class="filters-sidebar" [class.mobile-open]="showFiltersPanel">
+          <div class="sidebar-header">
+            <h3><i class="fa fa-sliders-h"></i> Filters</h3>
+            <button class="close-sidebar" (click)="showFiltersPanel = false">
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+          
+          <!-- Categories -->
+          <div class="filter-group">
+            <h4>Categories</h4>
+            <div class="category-list">
+              <button 
+                *ngFor="let category of categories"
+                [class.active]="selectedCategory === category.id"
+                (click)="setCategory(category.id)">
+                <i class="fa {{category.icon}}"></i>
+                <span class="cat-name">{{category.name}}</span>
+                <span class="cat-count">{{category.count}}</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Price Range Display -->
+          <div class="filter-group">
+            <h4>Price Range</h4>
+            <div class="price-range-display">
+              <span class="price-min">$79</span>
+              <div class="price-bar"></div>
+              <span class="price-max">$299</span>
+            </div>
+          </div>
+          
+          <!-- Rarity Filter -->
+          <div class="filter-group">
+            <h4>Rarity</h4>
+            <div class="rarity-options">
+              <label class="rarity-option">
+                <input type="checkbox" checked />
+                <span class="rarity-badge rarity-common">Common</span>
+              </label>
+              <label class="rarity-option">
+                <input type="checkbox" checked />
+                <span class="rarity-badge rarity-rare">Rare</span>
+              </label>
+              <label class="rarity-option">
+                <input type="checkbox" checked />
+                <span class="rarity-badge rarity-epic">Epic</span>
+              </label>
+              <label class="rarity-option">
+                <input type="checkbox" checked />
+                <span class="rarity-badge rarity-legendary">Legendary</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Clear Filters -->
+          <button class="btn-clear-filters" (click)="clearFilters()">
+            <i class="fa fa-redo"></i>
+            Reset All Filters
+          </button>
+        </aside>
+        
+        <!-- Filter Overlay (Mobile) -->
+        <div class="filter-overlay" [class.active]="showFiltersPanel" (click)="showFiltersPanel = false"></div>
+
+        <!-- Main Content -->
+        <div class="gallery-content">
+          <!-- Toolbar -->
+          <div class="gallery-toolbar">
+            <div class="toolbar-left">
+              <button class="filter-toggle" (click)="showFiltersPanel = true">
+                <i class="fa fa-sliders-h"></i>
+                <span>Filters</span>
+              </button>
+              
+              <div class="search-box">
+                <i class="fa fa-search"></i>
+                <input 
+                  type="text" 
+                  placeholder="Search NFTs, collections, artists..." 
+                  [value]="searchQuery"
+                  (input)="onSearchChange($any($event.target).value)"
+                />
+                <button class="clear-search" *ngIf="searchQuery" (click)="searchQuery = ''; filterAndSortItems()">
+                  <i class="fa fa-times"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="toolbar-right">
+              <div class="results-count">
+                <span class="count">{{filteredItems.length}}</span> NFTs found
+              </div>
+              
+              <div class="sort-dropdown">
+                <select [(ngModel)]="selectedSort" (change)="filterAndSortItems()">
+                  <option *ngFor="let option of sortOptions" [value]="option.id">
+                    {{option.name}}
+                  </option>
+                </select>
+                <i class="fa fa-chevron-down"></i>
+              </div>
+              
+              <div class="view-toggle">
+                <button [class.active]="viewMode === 'grid'" (click)="viewMode = 'grid'">
+                  <i class="fa fa-th-large"></i>
+                </button>
+                <button [class.active]="viewMode === 'list'" (click)="viewMode = 'list'">
+                  <i class="fa fa-list"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Active Filters -->
+          <div class="active-filters" *ngIf="selectedCategory !== 'all' || searchQuery">
+            <span class="filter-label">Active filters:</span>
+            <span class="filter-tag" *ngIf="selectedCategory !== 'all'">
+              {{selectedCategory}}
+              <button (click)="setCategory('all')"><i class="fa fa-times"></i></button>
+            </span>
+            <span class="filter-tag" *ngIf="searchQuery">
+              "{{searchQuery}}"
+              <button (click)="searchQuery = ''; filterAndSortItems()"><i class="fa fa-times"></i></button>
+            </span>
+            <button class="clear-all" (click)="clearFilters()">Clear all</button>
+          </div>
+
+          <!-- Gallery Grid -->
+          <div class="nft-grid" [class.list-view]="viewMode === 'list'">
+            <div 
+              class="nft-card" 
+              *ngFor="let item of filteredItems; trackBy: trackByFn"
+              (click)="openQuickView(item)">
+              
+              <!-- Card Image -->
+              <div class="card-image">
+                <img [src]="item.image" [alt]="item.name" loading="lazy" />
+                
+                <!-- Rarity Badge -->
+                <span class="rarity-tag" [class]="getRarityClass(item.rarity)">
+                  {{item.rarity}}
+                </span>
+                
+                <!-- Like Button -->
+                <button class="like-btn" [class.liked]="item.isLiked" (click)="toggleLike(item, $event)">
+                  <i class="fa" [class.fa-heart]="item.isLiked" [class.fa-heart]="!item.isLiked"></i>
+                  <span>{{formatNumber(item.likes)}}</span>
+                </button>
+                
+                <!-- Hover Overlay -->
+                <div class="card-overlay">
+                  <button class="btn-quick-view" (click)="openQuickView(item); $event.stopPropagation()">
+                    <i class="fa fa-eye"></i>
+                    Quick View
+                  </button>
+                  <button class="btn-print">
+                    <i class="fa fa-print"></i>
+                    Print NFT
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Card Content -->
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="collection">{{item.collection}}</span>
+                  <span class="artist">by {{item.artist}}</span>
+                </div>
+                <h3 class="card-title">{{item.name}}</h3>
+                <div class="card-footer">
+                  <div class="price">
+                    <span class="price-label">Print from</span>
+                    <span class="price-value">${{item.price}}</span>
+                  </div>
+                  <button class="btn-add-cart" (click)="$event.stopPropagation()">
+                    <i class="fa fa-shopping-cart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Empty State -->
+          <div class="empty-state" *ngIf="filteredItems.length === 0">
+            <div class="empty-icon">
+              <i class="fa fa-search"></i>
+            </div>
+            <h3>No NFTs Found</h3>
+            <p>We couldn't find any NFTs matching your criteria. Try adjusting your filters.</p>
+            <button class="btn-primary" (click)="clearFilters()">
+              <i class="fa fa-redo"></i>
+              Clear All Filters
+            </button>
+          </div>
+
+          <!-- Load More -->
+          <div class="load-more" *ngIf="filteredItems.length > 0">
+            <button class="btn-load-more">
+              <i class="fa fa-plus-circle"></i>
+              Load More NFTs
+            </button>
+            <p class="load-hint">Showing {{filteredItems.length}} of 100+ NFTs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" #animatedSection>
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-content">
+          <div class="cta-icon">
+            <i class="fa fa-wallet"></i>
+          </div>
+          <div class="cta-text">
+            <h2>Have Your Own NFTs?</h2>
+            <p>Connect your wallet and print your personal collection with museum-quality materials</p>
+          </div>
+        </div>
+        <button class="btn-primary btn-large">
+          <i class="fa fa-wallet"></i>
+          Connect Wallet
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Quick View Modal -->
+<div class="quick-view-modal" [class.open]="isQuickViewOpen" (click)="closeQuickView()">
+  <div class="modal-content" *ngIf="selectedItem" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeQuickView()">
+      <i class="fa fa-times"></i>
+    </button>
+    
+    <div class="modal-body">
+      <div class="modal-image">
+        <img [src]="selectedItem.image" [alt]="selectedItem.name" />
+        <span class="rarity-tag" [class]="getRarityClass(selectedItem.rarity)">
+          {{selectedItem.rarity}}
+        </span>
+      </div>
+      
+      <div class="modal-details">
+        <span class="modal-collection">{{selectedItem.collection}}</span>
+        <h2 class="modal-title">{{selectedItem.name}}</h2>
+        <p class="modal-artist">
+          <i class="fa fa-user-circle"></i>
+          Created by <strong>{{selectedItem.artist}}</strong>
+        </p>
+        
+        <div class="modal-stats">
+          <div class="stat">
+            <i class="fa fa-heart"></i>
+            <span>{{selectedItem.likes}} likes</span>
+          </div>
+          <div class="stat">
+            <i class="fa fa-eye"></i>
+            <span>1.2k views</span>
+          </div>
+        </div>
+        
+        <div class="print-options">
+          <h4>Print Options</h4>
+          <div class="size-options">
+            <button class="size-option active">
+              <span class="size">12×12"</span>
+              <span class="price">${{selectedItem.price}}</span>
+            </button>
+            <button class="size-option">
+              <span class="size">18×18"</span>
+              <span class="price">${{selectedItem.price + 40}}</span>
+            </button>
+            <button class="size-option">
+              <span class="size">24×24"</span>
+              <span class="price">${{selectedItem.price + 80}}</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button class="btn-primary btn-full">
+            <i class="fa fa-print"></i>
+            Print This NFT
+          </button>
+          <button class="btn-secondary btn-full">
+            <i class="fa fa-heart"></i>
+            Add to Wishlist
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,262 @@
+<!-- Hero Section -->
+<section class="hero-section" #animatedSection>
+  <div class="hero-bg">
+    <div class="grid-bg"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+  </div>
+  
+  <div class="container">
+    <div class="hero-content">
+      <span class="badge">
+        <i class="fa fa-bolt"></i>
+        Premium NFT Printing Service
+      </span>
+      
+      <h1>
+        <span class="gradient-text">Print NFT</span> Instantly<br />
+        From Your Wallet to Your Wall
+      </h1>
+      
+      <p class="hero-description">
+        Transform your digital collectibles into stunning physical art pieces. 
+        Museum-quality prints delivered to your door in less than a week.
+      </p>
+      
+      <div class="hero-actions">
+        <button class="btn-primary" routerLink="/gallery">
+          <i class="fa fa-rocket"></i>
+          Start Printing
+        </button>
+        <button class="btn-secondary" routerLink="/pricing">
+          <i class="fa fa-tag"></i>
+          View Pricing
+        </button>
+      </div>
+      
+      <div class="hero-stats">
+        <div class="stat-item" *ngFor="let stat of stats">
+          <i class="fa {{stat.icon}}"></i>
+          <div class="stat-content">
+            <span class="stat-value">{{stat.value | number}}{{stat.suffix}}</span>
+            <span class="stat-label">{{stat.label}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <infinite-autoplay-carousel class="carousel-section"></infinite-autoplay-carousel>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works-section" #animatedSection>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Simple Process</span>
+      <h2><span class="gradient-text">How</span> It Works</h2>
+      <p>Four simple steps to transform your NFT into a masterpiece</p>
+    </div>
+    
+    <div class="steps-grid">
+      <div class="step-card" *ngFor="let step of howItWorks; let i = index">
+        <div class="step-number">0{{i + 1}}</div>
+        <div class="step-icon">
+          <i class="fa {{step.icon}}"></i>
+        </div>
+        <h3>{{step.title}}</h3>
+        <p>{{step.description}}</p>
+        <div class="step-connector" *ngIf="i < howItWorks.length - 1"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section" #animatedSection>
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-content">
+        <span class="section-badge">Premium Quality</span>
+        <h2><span class="gradient-text">From Your</span> Wallet</h2>
+        <p>
+          Connect your preferred Web3 wallet and instantly access your entire NFT collection. 
+          We support all major wallets including MetaMask, WalletConnect, Coinbase Wallet, and more.
+        </p>
+        
+        <ul class="feature-list">
+          <li>
+            <i class="fa fa-check-circle"></i>
+            Support for all major wallets
+          </li>
+          <li>
+            <i class="fa fa-check-circle"></i>
+            Browse your entire collection
+          </li>
+          <li>
+            <i class="fa fa-check-circle"></i>
+            High-resolution image extraction
+          </li>
+          <li>
+            <i class="fa fa-check-circle"></i>
+            Secure and private connection
+          </li>
+        </ul>
+        
+        <button class="btn-primary">
+          <i class="fa fa-wallet"></i>
+          Connect Wallet
+        </button>
+      </div>
+      
+      <div class="feature-visual">
+        <div class="visual-wrapper">
+          <!-- Placeholder for generated wallet image -->
+          <div class="image-placeholder wallet-visual">
+            <i class="fa fa-wallet"></i>
+            <span>Secure Wallet Connect</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Transform Section -->
+<section class="transform-section" #animatedSection>
+  <div class="container">
+    <div class="features-grid reverse">
+      <div class="feature-visual">
+        <div class="visual-wrapper centered">
+          <!-- Placeholder for generated wall art image -->
+          <div class="image-placeholder wall-visual">
+            <i class="fa fa-image"></i>
+            <span>Museum Quality Prints</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="feature-content">
+        <span class="section-badge">Physical Art</span>
+        <h2><span class="gradient-text">To Your</span> Wall</h2>
+        <p>
+          We use museum-grade materials and archival inks to ensure your NFT print 
+          lasts a lifetime. Choose from canvas, metal, acrylic, or premium paper.
+        </p>
+        
+        <div class="material-options">
+          <div class="material-card">
+            <i class="fa fa-th-large"></i>
+            <span>Canvas</span>
+          </div>
+          <div class="material-card">
+            <i class="fa fa-certificate"></i>
+            <span>Metal</span>
+          </div>
+          <div class="material-card">
+            <i class="fa fa-gem"></i>
+            <span>Acrylic</span>
+          </div>
+          <div class="material-card">
+            <i class="fa fa-file-alt"></i>
+            <span>Paper</span>
+          </div>
+        </div>
+        
+        <button class="btn-primary" routerLink="/pricing">
+          <i class="fa fa-palette"></i>
+          Explore Options
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section" #animatedSection>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Customer Love</span>
+      <h2>What Our <span class="gradient-text">Customers</span> Say</h2>
+      <p>Join thousands of satisfied NFT collectors worldwide</p>
+    </div>
+    
+    <div class="testimonials-carousel">
+      <button class="carousel-btn prev" (click)="prevTestimonial()">
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      
+      <div class="testimonials-track">
+        <div class="testimonial-card" 
+             *ngFor="let testimonial of testimonials; let i = index"
+             [class.active]="i === currentTestimonial">
+          <div class="quote-icon">
+            <i class="fa fa-quote-left"></i>
+          </div>
+          <p class="quote">{{testimonial.quote}}</p>
+          <div class="rating">
+            <i class="fa fa-star" *ngFor="let star of [1,2,3,4,5]; let s = index"
+               [class.filled]="s < testimonial.rating"></i>
+          </div>
+          <div class="author">
+            <img [src]="testimonial.avatar" [alt]="testimonial.name" class="avatar" />
+            <div class="author-info">
+              <span class="author-name">{{testimonial.name}}</span>
+              <span class="author-role">{{testimonial.role}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="carousel-btn next" (click)="nextTestimonial()">
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
+    
+    <div class="carousel-dots">
+      <button *ngFor="let dot of testimonials; let i = index"
+              [class.active]="i === currentTestimonial"
+              (click)="setTestimonial(i)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section" #animatedSection>
+  <div class="cta-bg">
+    <div class="grid-bg"></div>
+  </div>
+  
+  <div class="container">
+    <div class="cta-wrapper">
+      <!-- Placeholder for room image -->
+      <div class="cta-image-container">
+        <div class="image-placeholder room-visual">
+            <i class="fa fa-couch"></i>
+        </div>
+      </div>
+      
+      <div class="cta-content">
+        <h2>Wen<span class="gradient-text">Print?</span></h2>
+        <p>Don't let your digital art stay hidden in your wallet. Transform it into a conversation piece today!</p>
+        <button class="btn-primary btn-large" routerLink="/gallery">
+          <i class="fa fa-rocket"></i>
+          Start Printing Now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section" #animatedSection>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Got Questions?</span>
+      <h2><span class="gradient-text">Frequently</span> Asked Questions</h2>
+      <p>Everything you need to know about our NFT printing service</p>
+    </div>
+    
+    <accordion class="accordion" [items]="faqs"></accordion>
+  </div>
+</section>

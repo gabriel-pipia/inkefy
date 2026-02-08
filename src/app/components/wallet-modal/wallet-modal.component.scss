@@ -1,0 +1,319 @@
+@import "../../../assets/scss/Variable";
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  background: linear-gradient(180deg, rgba(30, 25, 45, 0.98) 0%, rgba(18, 14, 25, 0.99) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  transform: scale(0.9) translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(251, 24, 187, 0.1);
+  
+  &.visible {
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Modal Header
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .header-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $primary-gradient;
+    border-radius: 14px;
+    
+    i {
+      font-size: 1.25rem;
+      color: $color-white-default;
+    }
+  }
+  
+  .header-text {
+    h2 {
+      font-size: 1.25rem;
+      font-weight: $fw-bold;
+      color: $color-white-default;
+      margin: 0 0 0.25rem;
+    }
+    
+    p {
+      font-size: $fs-small;
+      color: $color-text-muted;
+      margin: 0;
+    }
+  }
+  
+  .close-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: $color-text-muted;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: rgba(255, 75, 75, 0.2);
+      border-color: rgba(255, 75, 75, 0.3);
+      color: #ff4b4b;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+// Connecting State
+.connecting-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  
+  .spinner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.125rem;
+    font-weight: $fw-semibold;
+    color: $color-white-default;
+    margin: 0 0 0.5rem;
+    text-transform: capitalize;
+  }
+  
+  p {
+    font-size: $fs-small;
+    color: $color-text-muted;
+    margin: 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Wallet Options
+.wallet-options {
+  padding: 1rem 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+}
+
+.wallet-section {
+  margin-bottom: 1.5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  .section-label {
+    display: block;
+    font-size: $fs-tiny;
+    font-weight: $fw-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-text-muted;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.wallet-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wallet-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  color: $color-white-default;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+    
+    .wallet-icon {
+      background: rgba(251, 24, 187, 0.15);
+      border-color: rgba(251, 24, 187, 0.3);
+      
+      i {
+        color: $color-primary;
+      }
+    }
+    
+    .fa-chevron-right {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+  }
+  
+  &.popular {
+    background: linear-gradient(135deg, rgba(251, 24, 187, 0.08), rgba(69, 167, 246, 0.05));
+    border-color: rgba(251, 24, 187, 0.15);
+  }
+  
+  .wallet-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    
+    i {
+      font-size: 1.5rem;
+      color: $color-text-muted;
+      transition: color 0.3s ease;
+    }
+  }
+  
+  .wallet-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  
+  .wallet-name {
+    font-size: $fs-medium;
+    font-weight: $fw-semibold;
+    color: $color-white-default;
+  }
+  
+  .wallet-desc {
+    font-size: $fs-tiny;
+    color: $color-text-muted;
+  }
+  
+  .fa-chevron-right {
+    font-size: 0.75rem;
+    color: $color-text-muted;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+}
+
+// Modal Footer
+.modal-footer {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  
+  .footer-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: $fs-tiny;
+    color: $color-text-muted;
+    margin: 0 0 0.75rem;
+    
+    i {
+      color: #4caf50;
+    }
+  }
+  
+  .footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: $fs-tiny;
+    
+    span {
+      color: rgba(255, 255, 255, 0.2);
+    }
+    
+    a {
+      color: $color-primary;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+      
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

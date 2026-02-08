@@ -1,13 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+export interface AccordionItem {
+  title: string;
+  content: string;
+  isOpen?: boolean;
+}
 
 @Component({
   selector: 'accordion',
   templateUrl: './accordion.component.html',
-  styleUrls: ['./accordion.component.scss']
+  styleUrls: ['./accordion.component.scss'],
+  standalone: false
 })
 export class AccordionComponent {
-  OpenAccordian(Item: any) {
-    let accordian = Item.target;
-    accordian.classList.toggle('active');
+  @Input() items: AccordionItem[] = [];
+
+  toggleItem(item: AccordionItem) {
+    // Close other items if you want accordion behavior (one open at a time)
+    // this.items.forEach(i => {
+    //   if (i !== item) i.isOpen = false;
+    // });
+    item.isOpen = !item.isOpen;
   }
 }

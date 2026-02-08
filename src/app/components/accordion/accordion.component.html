@@ -1,53 +1,10 @@
-<div class="accordian-item" (click)="OpenAccordian($event)">
+<div class="accordian-item" *ngFor="let item of items" [class.active]="item.isOpen" (click)="toggleItem(item)">
   <div class="accordian-header">
-    <h3 class="accordian-title">What is Inkefy?</h3>
-    <i class="fa fa-add plus"></i>
+    <h3 class="accordian-title">{{item.title}}</h3>
+    <i class="fa fa-plus plus"></i>
     <i class="fa fa-minus minus"></i>
   </div>
   <div class="accordian-body">
-    <p>
-      consequuntur earum, eius tempora nostrum consequatur nobis aut odio, ratione unde perferendis ipsa reprehenderit laudantium. Aperiam consectetur tempora accusamus adipisci modi enim doloribus provident, harum id! Magnam laborum temporibus hic voluptatibus
-      voluptatum ducimus natus amet ea?
-    </p>
-  </div>
-</div>
-<div class="accordian-item" (click)="OpenAccordian($event)">
-  <div class="accordian-header">
-    <h3 class="accordian-title">How to get the NFT directly from my wallet?</h3>
-    <i class="fa fa-add plus"></i>
-    <i class="fa fa-minus minus"></i>
-  </div>
-  <div class="accordian-body">
-    <p>
-      consequuntur earum, eius tempora nostrum consequatur nobis aut odio, ratione unde perferendis ipsa reprehenderit laudantium. Aperiam consectetur tempora accusamus adipisci modi enim doloribus provident, harum id! Magnam laborum temporibus hic voluptatibus
-      voluptatum ducimus natus amet ea consequuntur earum, eius tempora nostrum voluptatum ducimus natus amet.
-    </p>
-  </div>
-</div>
-<div class="accordian-item" (click)="OpenAccordian($event)">
-  <div class="accordian-header">
-    <h3 class="accordian-title">cupidatat non proid in culpat?</h3>
-    <i class="fa fa-add plus"></i>
-    <i class="fa fa-minus minus"></i>
-  </div>
-  <div class="accordian-body">
-    <p>
-      consequuntur earum, eius tempora nostrum consequatur nobis aut odio, ratione unde perferendis ipsa reprehenderit laudantium. Aperiam consectetur tempora accusamus adipisci modi enim doloribus provident, harum id! Magnam laborum temporibus hic voluptatibus
-      voluptatum ducimus natus amet eanostrum consequatur consequuntur earum, eius tempora nostrum consequatur nobis aut odio, ratione unde perferendis ipsa reprehenderit laudantium. Aperiam consectetur tempora accusamus adipisci modi enim doloribus provident,
-      harum id! Magnam laborum temporibus hic voluptatibus voluptatum ducimus natus amet ea?
-    </p>
-  </div>
-</div>
-<div class="accordian-item" (click)="OpenAccordian($event)">
-  <div class="accordian-header">
-    <h3 class="accordian-title">Exceptour sint occaocat in culpat?</h3>
-    <i class="fa fa-add plus"></i>
-    <i class="fa fa-minus minus"></i>
-  </div>
-  <div class="accordian-body">
-    <p>
-      consequuntur earum, eius tempora nostrum consequatur nobis aut odio, ratione unde perferendis ipsa reprehenderit laudantium. Aperiam consectetur tempora accusamus adipisci modi enim doloribus provident, harum id! Magnam laborum temporibus hic voluptatibus
-      voluptatum ducimus natus amet ea consequuntur earum, eius tempora nostrum voluptatum ducimus natus amet. voluptatum ducimus natus amet ea consequuntur earum, eius tempora nostrum voluptatum ducimus natus amet.
-    </p>
+    <p>{{item.content}}</p>
   </div>
 </div>

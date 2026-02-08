@@ -1,0 +1,137 @@
+<div class="about-page">
+  <!-- Hero Section -->
+  <section class="hero-section" #animatedSection>
+    <div class="hero-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container">
+      <span class="section-badge">Our Story</span>
+      <h1>Bringing <span class="gradient-text">Digital Art</span> to Life</h1>
+      <p>We believe every NFT deserves to be seen, touched, and admired in the physical world.</p>
+      
+      <div class="stats-row">
+        <div class="stat-item" *ngFor="let stat of stats">
+          <span class="stat-value">{{stat.value}}</span>
+          <span class="stat-label">{{stat.label}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="story-section" #animatedSection>
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image">
+          <div class="image-placeholder story-visual">
+            <i class="fa fa-lightbulb"></i>
+            <span>Our Vision</span>
+          </div>
+        </div>
+        <div class="story-content">
+          <span class="section-badge">Background</span>
+          <h2>Our <span class="gradient-text">Mission</span></h2>
+          <p>
+            Inkefy was born from a simple observation: the most valuable digital art in the world 
+            was trapped inside screens. Collectors were spending millions on NFTs, but they 
+            couldn't share their passion with friends and family who visited their homes.
+          </p>
+          <p>
+            We set out to change that. Our mission is to bridge the gap between the digital and 
+            physical worlds, allowing NFT collectors to showcase their prized possessions in the 
+            most natural way possible – on their walls.
+          </p>
+          <p>
+            Today, we've printed over 15,000 NFTs for collectors in more than 50 countries, 
+            using museum-grade materials that ensure every piece looks stunning for generations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section" #animatedSection>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">What Drives Us</span>
+        <h2>Our <span class="gradient-text">Values</span></h2>
+      </div>
+      
+      <div class="values-grid">
+        <div class="value-card" *ngFor="let value of values">
+          <div class="value-icon">
+            <i class="fa {{value.icon}}"></i>
+          </div>
+          <h3>{{value.title}}</h3>
+          <p>{{value.description}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section" #animatedSection>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">The Humans Behind Inkefy</span>
+        <h2>Meet Our <span class="gradient-text">Team</span></h2>
+      </div>
+      
+      <div class="team-grid">
+        <div class="team-card" *ngFor="let member of team">
+          <div class="member-image">
+            <img [src]="member.image" [alt]="member.name" />
+          </div>
+          <div class="member-info">
+            <h3>{{member.name}}</h3>
+            <span class="member-role">{{member.role}}</span>
+            <p>{{member.bio}}</p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="partners-section" #animatedSection>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Ecosystem</span>
+        <h2>Trusted by the <span class="gradient-text">Web3</span> Community</h2>
+      </div>
+      <div class="partners-grid">
+        <div class="partner-logo" *ngFor="let partner of partners">
+          <i class="{{partner.icon}}"></i>
+          <span>{{partner.name}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" #animatedSection>
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Join the Revolution?</h2>
+        <p>Transform your digital collection into physical art today</p>
+        <div class="cta-actions">
+          <button class="btn-primary" routerLink="/gallery">
+            <i class="fa fa-rocket"></i>
+            Start Printing
+          </button>
+          <button class="btn-secondary" routerLink="/contact">
+            <i class="fa fa-envelope"></i>
+            Contact Us
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

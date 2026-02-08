@@ -1,3 +1,5 @@
-<header></header>
-<main></main>
-<footer></footer>
+<app-navbar></app-navbar>
+<main class="main-content" [@fadeAnimation]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</main>
+<app-footer></app-footer>

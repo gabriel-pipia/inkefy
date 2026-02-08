@@ -1,29 +1,38 @@
-# Inkefy
+# Inkefy - Premium NFT Printing Service
 
-Preview [gp-inkefy.netlify.app](https://gp-inkefy.netlify.app)
+Inkefy is a modern, high-performance Angular application designed to bridge the gap between digital art (NFTs) and physical displays. It offers a seamless experience for users to print their NFTs on premium materials like canvas, metal, and acrylic.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
+![Application Screenshot](src/assets/images/screenshot.png)
 
-## Development server
+## Live Demo
+Check out the live version here: [gp-inkefy.netlify.app](https://gp-inkefy.netlify.app)
+
+## Key Features
+
+### 🎨 Premium UI/UX
+- **Modern Design**: Glassmorphism effects, gradient text, and dark mode aesthetics.
+- **Responsive Layout**: Fully optimized for mobile, tablet, and desktop devices.
+- **Smooth Animations**: 
+  - **Route Transitions**: Elegant fade-in and slide-up animations when navigating between pages.
+  - **Scroll Animations**: Sections gracefully slide into view as you scroll down.
+
+### 🚀 Core Functionality
+- **Home Page**: Engaging hero section and feature highlights.
+- **Gallery**: Browse and filter NFT collections with dynamic sorting and categorization.
+- **Pricing**: Detailed pricing plans with toggle for monthly/annual billing.
+- **Contact**: Interactive contact form and FAQ section.
+- **About**: Company story, values, and team showcase.
+
+## Tech Stack
+- **Framework**: Angular 15+
+- **Styling**: SCSS with custom variables and mixins
+- **Icons**: FontAwesome 6
+- **Animations**: Angular Animations & Intersection Observer API
+
+## Development
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

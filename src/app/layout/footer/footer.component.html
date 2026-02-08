@@ -1,33 +1,76 @@
-<div class="container">
-  <div class="top">
-    <div class="logo">
-      <img src="../../../assets/images/logo.png" alt="logo" />
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand Section -->
+      <div class="footer-brand">
+        <a routerLink="/" class="logo">
+          <img src="assets/images/logo.png" alt="Inkefy" />
+        </a>
+        <p class="brand-description">
+          Transform your NFTs into stunning physical art pieces. 
+          Museum-quality prints delivered worldwide.
+        </p>
+        <div class="social-links">
+          <a *ngFor="let social of socialLinks" 
+             [href]="social.url" 
+             [title]="social.name"
+             target="_blank">
+            <i class="fab {{social.icon}}"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Product Links -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li *ngFor="let link of footerLinks.product">
+            <a [routerLink]="link.route">{{link.label}}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li *ngFor="let link of footerLinks.company">
+            <a [routerLink]="link.route">{{link.label}}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Support Links -->
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li *ngFor="let link of footerLinks.support">
+            <a [routerLink]="link.route">{{link.label}}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="footer-newsletter">
+        <h4>Stay Updated</h4>
+        <p>Get notified about new features and updates</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" />
+          <button type="submit">
+            <i class="fa fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
     </div>
-    <div class="footer-navigation-wrapper">
-      <ul>
-        <h3 class="titile">Product</h3>
-        <li>Materials</li>
-        <li>Features</li>
-      </ul>
-      <ul>
-        <h3 class="titile">Support</h3>
-        <li>FAQ</li>
-        <li>Contact us</li>
-      </ul>
-      <ul>
-        <h3 class="titile">Company</h3>
-        <li>About</li>
-        <li>Terms of Use</li>
-        <li>Privacy policy</li>
-      </ul>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; {{currentYear}} Inkefy. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
     </div>
   </div>
-  <div class="middle">
-    <i class="fa fa-twitter"></i>
-    <i class="fa fa-discord"></i>
-    <i class="fa fa-instagram"></i>
-  </div>
-  <div class="bottom">
-    <p>© Copyright {{ currentYear }} Inkefy. All Rights Reserved.</p>
-  </div>
-</div>
+</footer>
