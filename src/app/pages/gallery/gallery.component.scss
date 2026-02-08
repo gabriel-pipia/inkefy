@@ -1,5 +1,5 @@
-@import "../../../assets/scss/Variable";
-@import "../../../assets/scss/Mixin";
+@use "../../../assets/scss/Variable" as *;
+@use "../../../assets/scss/Mixin" as *;
 
 // ===== Base Styles =====
 .gallery-page {
@@ -30,7 +30,7 @@ section {
   
   &.animate-in {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -356,6 +356,21 @@ section {
   }
 }
 
+// Sidebar Visibility Strategy
+.filters-sidebar.desktop-sidebar {
+  @media (max-width: 1024px) {
+    display: none !important;
+  }
+}
+
+.filters-sidebar.mobile-sidebar {
+  display: none;
+  
+  @media (max-width: 1024px) {
+    display: block;
+  }
+}
+
 .filter-overlay {
   display: none;
   
@@ -424,6 +439,10 @@ section {
     display: flex;
     align-items: center;
     gap: 1rem;
+
+    @media (max-width: 768px) {
+      display: contents;
+    }
   }
   
   .filter-toggle {
@@ -450,11 +469,17 @@ section {
   
   .search-box {
     position: relative;
-    min-width: 300px;
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
     
     @media (max-width: 768px) {
+      width: 100%;
       min-width: 100%;
-      order: 3;
+      max-width: none;
+      flex: 0 0 100%;
+      order: 10;
+      margin-top: 0.5rem;
     }
     
     i.fa-search {
@@ -647,8 +672,13 @@ section {
 // ===== NFT Grid =====
 .nft-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.5rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
   
   &.list-view {
     grid-template-columns: 1fr;
@@ -1103,7 +1133,8 @@ section {
     background: linear-gradient(180deg, rgba(30, 25, 45, 0.98) 0%, rgba(18, 14, 25, 0.99) 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: $large-radius;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     transform: scale(0.95) translateY(20px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -1135,7 +1166,7 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       grid-template-columns: 1fr;
     }
   }

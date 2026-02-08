@@ -1,4 +1,4 @@
-@import "./Variable";
+@use "./Variable" as *;
 $breakPoints: ( "xs": 0, "sm": 480px, "md": 720px, "lg": 960px, "xl": 1200px, "xxl": 1400px, "xxxl": 1600px, );
 @mixin screen-xs {
   @media screen and (min-width: map-get($breakPoints, "xs")) {

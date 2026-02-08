@@ -1,5 +1,5 @@
-@import "../../../assets/scss/Variable";
-@import "../../../assets/scss/Mixin";
+@use "../../../assets/scss/Variable" as *;
+@use "../../../assets/scss/Mixin" as *;
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 0.5; }

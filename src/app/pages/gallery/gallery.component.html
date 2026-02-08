@@ -38,8 +38,7 @@
   <section class="gallery-main" #animatedSection>
     <div class="container">
       <div class="gallery-layout">
-        <!-- Sidebar Filters (Desktop) -->
-        <aside class="filters-sidebar" [class.mobile-open]="showFiltersPanel">
+        <ng-template #filtersContent>
           <div class="sidebar-header">
             <h3><i class="fa fa-sliders-h"></i> Filters</h3>
             <button class="close-sidebar" (click)="showFiltersPanel = false">
@@ -100,11 +99,12 @@
             <i class="fa fa-redo"></i>
             Reset All Filters
           </button>
-        </aside>
-        
-        <!-- Filter Overlay (Mobile) -->
-        <div class="filter-overlay" [class.active]="showFiltersPanel" (click)="showFiltersPanel = false"></div>
+        </ng-template>
 
+        <!-- Sidebar Filters (Desktop) -->
+        <aside class="filters-sidebar desktop-sidebar">
+          <ng-container *ngTemplateOutlet="filtersContent"></ng-container>
+        </aside>
         <!-- Main Content -->
         <div class="gallery-content">
           <!-- Toolbar -->
@@ -270,6 +270,14 @@
     </div>
   </section>
 </div>
+
+<!-- Mobile Filter Sidebar -->
+<aside class="filters-sidebar mobile-sidebar" [class.mobile-open]="showFiltersPanel">
+  <ng-container *ngTemplateOutlet="filtersContent"></ng-container>
+</aside>
+
+<!-- Filter Overlay (Mobile) -->
+<div class="filter-overlay" [class.active]="showFiltersPanel" (click)="showFiltersPanel = false"></div>
 
 <!-- Quick View Modal -->
 <div class="quick-view-modal" [class.open]="isQuickViewOpen" (click)="closeQuickView()">

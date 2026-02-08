@@ -1,4 +1,4 @@
-@import "../../../assets/scss/Variable";
+@use "../../../assets/scss/Variable" as *;
 
 .modal-overlay {
   position: fixed;

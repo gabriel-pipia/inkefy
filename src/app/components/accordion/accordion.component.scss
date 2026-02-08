@@ -1,6 +1,6 @@
-@import "../../../assets/scss/Mixin";
-@import "../../../assets/scss/Reset";
-@import "../../../assets/scss/Variable";
+@use "../../../assets/scss/Mixin" as *;
+@use "../../../assets/scss/Reset" as *;
+@use "../../../assets/scss/Variable" as *;
 .accordian-item {
   --border-radius: 0.8rem;
   --border-width: 0.15rem;

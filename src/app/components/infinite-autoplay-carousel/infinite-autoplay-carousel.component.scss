@@ -1,6 +1,6 @@
-@import "../../../assets/scss/Mixin";
-@import "../../../assets/scss/Reset";
-@import "../../../assets/scss/Variable";
+@use "../../../assets/scss/Mixin" as *;
+@use "../../../assets/scss/Reset" as *;
+@use "../../../assets/scss/Variable" as *;
 .carousel-slider {
   --slider-width: 5000px;
   position: relative;

@@ -1,5 +1,5 @@
-@import "../../../assets/scss/Variable";
-@import "../../../assets/scss/Mixin";
+@use "../../../assets/scss/Variable" as *;
+@use "../../../assets/scss/Mixin" as *;
 
 // ===== MAIN NAVBAR =====
 .navbar {

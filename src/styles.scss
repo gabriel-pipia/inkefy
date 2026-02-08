@@ -1,6 +1,6 @@
-@import "./assets/scss/_Mixin.scss";
-@import "./assets/scss/_Reset.scss";
-@import "./assets/scss/_Variable.scss";
+@use "./assets/scss/Mixin.scss" as *;
+@use "./assets/scss/Reset.scss" as *;
+@use "./assets/scss/Variable.scss" as *;
 
 // Import Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
