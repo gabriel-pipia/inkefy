@@ -32,8 +32,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/font-awesome/css/font-awesome.css",
-              "./node_modules/font-awesome/css/font-awesome.min.css"
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
           },
@@ -67,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "inkefy:build:production"
+              "buildTarget": "inkefy:build:production"
             },
             "development": {
-              "browserTarget": "inkefy:build:development"
+              "buildTarget": "inkefy:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "inkefy:build"
+            "buildTarget": "inkefy:build"
           }
         },
         "test": {
